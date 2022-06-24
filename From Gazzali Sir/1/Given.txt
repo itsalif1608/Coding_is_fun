@@ -1,0 +1,49 @@
+Modify the class constructor so that it can --
+* Accept any number of this 3 parameters studentName, studentID, studentCGPA and based on the params it can generate the instance varibale; without hardcoded guessing.
+
+Removing Hardcoded guessing: Even If the user passes only 1 argument while crerating an object, for example, s3 = Student(studentID = 160041014), instead of (studentName = "ABC"), the object should be created without throwing 'KeyError'.
+
+Fix this bug for any number of the 3 parameters.
+
+
+
+
+class Student:
+  def __init__(self, **info):
+
+    if len(info) == 3:
+
+      self.studentName = info['studentName']
+      self.studentID = info['studentID']
+      self.studentCGPA = info['studentCGPA']
+
+      print(f'Student name is {self.studentName}, student ID  is {self.studentID} and CGPA is {self.studentCGPA}')
+
+    elif len(info) == 2:
+
+      self.studentName = info['studentName']
+      self.studentID = info['studentID']
+
+      print(f'Student name is {self.studentName}, student ID  is {self.studentID}')
+
+    elif len(info) == 1:
+      
+      self.studentName = info['studentName']
+
+      print(f'Student name is {self.studentName}')
+
+    elif len(info) > 3:
+      print(f"too many arguments. {info}")
+
+    else:
+      self.studentName = None
+      self.studentID = None
+      self.studentCGPA = None
+      print("A student with empty info has been created.")
+
+
+s1 = Student()
+s2 = Student()
+s3 = Student(studentName = "A", studentID = 7465251)
+s3 = Student(studentID = 160041014) # This will throw an  KeyError: 'studentName', fix bugs like this.
+s4 = Student(studentID = 160041014, studentCGPA = 3.98, studentName = "B")
